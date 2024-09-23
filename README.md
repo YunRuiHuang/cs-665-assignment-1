@@ -11,20 +11,26 @@
 In this assignment, we need to build a vending machine software which can sell three kinds of tea and three kinds of coffee. Also, this machine should able to add three level of mike and sugar to the drink. In addition, the software should able to calculate the price base on the drink and condiment.
 
 # GitHub Repository Link:
-https://github.com/{YOUR_USERNAME}/cs-665-assignment-{ASSIGNMENT_NUMBER}
+https://github.com/YunRuiHuang/cs-665-assignment-1
 
-# Implementation Description 
+# Implementation Description
 
+- Level of flexibility
+  - this software has a high flexibility to modify each drink
+  - each drink is an individual class, easy to add, delete and modify. And no need to modify other class
+  - each drink can define its own name, type and price
+  - each drink can define unique price calculation method
+- simplicity and understandability
+  - with Javadoc and class diagram, this implementation structure is easy to understand
+  - to add the new drink, only need to follow the interface template 
 
-For each assignment, please answer the following:
-
-- Explain the level of flexibility in your implementation, including how new object types can
-be easily added or removed in the future.
-- Discuss the simplicity and understandability of your implementation, ensuring that it is
-easy for others to read and maintain.
-- Describe how you have avoided duplicated code and why it is important.
-- If applicable, mention any design patterns you have used and explain why they were
-chosen.
+- avoided duplicated code
+  - all the drinks can add milk and sugar, so set milk and set sugar method is shared by all product
+  - Because of the high flexibility of get price method for each drink, the unduplicated is bit low at this part
+- design patterns
+  - I use Strategy pattern for this implementation
+  - user chooses from different drinks are same as a large switch statement
+  - strategy pattern helps manage all kinds of drinks and not need to modify other classes when adding more drink type
 
 
 # Maven Commands
