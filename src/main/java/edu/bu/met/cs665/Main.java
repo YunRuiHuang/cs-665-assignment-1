@@ -9,7 +9,7 @@
 package edu.bu.met.cs665;
 
 import edu.bu.met.cs665.hw1.Espresso;
-import edu.bu.met.cs665.hw1.Product;
+import edu.bu.met.cs665.hw1.*;
 
 /**
  * This is the Main class.
@@ -32,8 +32,8 @@ public class Main {
    * @return String
    */
   private String doIt() {
-    Product product = new Product(new Espresso());
-    return product.getMilk() + "," + product.getSugar();
+    Drink drink = new Espresso();
+    return drink.getName();
   }
 
 }

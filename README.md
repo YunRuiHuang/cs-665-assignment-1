@@ -2,13 +2,31 @@
 | CS-665       | Software Design & Patterns |
 | ------------ | -------------------------- |
 | Name         | Yunrui Huang               |
-| Date         | 09/23/2024                 |
+| Date         | 12/08/2024                 |
 | Course       | Fall                       |
 | Assignment # | 1                          |
 
 # Assignment Overview
 
 In this assignment, we need to build a vending machine software which can sell three kinds of tea and three kinds of coffee. Also, this machine should able to add three level of mike and sugar to the drink. In addition, the software should able to calculate the price base on the drink and condiment.
+
+## For Assignment 6 Update
+
+In the assignment 1, we build a vending machine for sell drink and allow to add condiments. In this assignment, I choose Strategy pattern to solve the problem. To refactor that, I found out the condiments can split from the product class via using Decorator Pattern. By using the Decorator Pattern, Developer can easily add new condiments to the drink and not need to modify the Drink class. So this assignment using both Strategy pattern for choose base drink and Decorator Pattern for add condiments.
+
+## changes made to the code 
+
+For the Decorator Pattern, I add the `CondimentDecorator.java ` as the decorator for the condiment. Because I reuse the Drink interface for all the drink, the Decorator implement  the Drink interface, not extend the Drink. The Decorator class provide the unify `getName()` and  `getPrice()` method and the `getType()` is return the base drink type. The Milk class and Sugar class extend the Decorator class and set the price and name when construct. Also, I remove the Product.java because not need that anymore.
+
+## UML
+
+**Old UML**
+
+![](ClassDiagram.png)
+
+**New UML**
+
+![](NewClassDiagram.png)
 
 # GitHub Repository Link:
 https://github.com/YunRuiHuang/cs-665-assignment-1

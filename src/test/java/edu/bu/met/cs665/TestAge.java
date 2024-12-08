@@ -2,9 +2,7 @@ package edu.bu.met.cs665;
 
 import static org.junit.Assert.assertEquals;
 
-import edu.bu.met.cs665.hw1.Espresso;
-import edu.bu.met.cs665.hw1.GreenTea;
-import edu.bu.met.cs665.hw1.Product;
+import edu.bu.met.cs665.hw1.*;
 import org.junit.Test;
 
 /**
@@ -19,65 +17,70 @@ public class TestAge {
     @Test
     public void testProduct() {
         // Given: a product object with the Espresso drink
-        Product product = new Product(new Espresso());
+        Drink drink = new Espresso();
 
-        //Then: the init milk and sugar should be zero and price of espresso should be 2
-        assertEquals(0,product.getMilk());
-        assertEquals(0,product.getSugar());
-        assertEquals(2,product.getPrice(),0);
+        //Then: the price of espresso should be 2 and Name should only has espresso
+        assertEquals("Espresso",drink.getName());
+        assertEquals("Coffee",drink.getType());
+        assertEquals(2,drink.getPrice(),0);
     }
 
     @Test
     public void testSetMilk(){
         // Given: a product object with the Espresso drink
-        Product product = new Product(new Espresso());
+        Drink drink = new Espresso();
 
         //When: the milk lever set to 2
-        product.setMilk(2);
+        drink = new Milk(drink, 2);
 
         //Then: the milk level change from 0 to 2
-        assertEquals(2,product.getMilk());
+        assertEquals("Espresso Milkx2",drink.getName());
+        assertEquals("Coffee",drink.getType());
+        assertEquals(3,drink.getPrice(),0);
     }
 
     @Test
     public void testSetSugar(){
         // Given: a product object with the Espresso drink
-        Product product = new Product(new Espresso());
+        Drink drink = new Espresso();
 
         //When: the sugar lever set to 2
-        product.setSugar(2);
+        drink = new Sugar(drink, 2);
 
         //Then: the sugar level change from 0 to 2
-        assertEquals(2,product.getSugar());
-    }
-
-    @Test
-    public void testSetDrink(){
-        // Given: a product object with the Espresso drink
-        Product product = new Product(new Espresso());
-
-        //Then: the drink name should be Espresso
-        assertEquals("Espresso",product.getDrink());
-
-        //When: change the drink to the green tea
-        product.setDrink(new GreenTea());
-
-        //Then: the drink name should be Green Tea
-        assertEquals("Green Tea",product.getDrink());
+        assertEquals("Espresso Sugarx2",drink.getName());
+        assertEquals("Coffee",drink.getType());
+        assertEquals(3,drink.getPrice(),0);
     }
 
     @Test
     public void testGetPrice(){
-        // Given: a product object with the Espresso drink
-        Product product = new Product(new Espresso());
+        // Given: a product object with the Green Tea drink
+        Drink drink = new GreenTea();
 
         //When: set the milk level to 2 and sugar level to 1
-        product.setMilk(2);
-        product.setSugar(1);
+        drink = new Milk(drink, 2);
+        drink = new Sugar(drink, 1);
 
-        //Then: the total price should be espresso $2 + milk 2*0.5$ + sugar 1*0.5$ = 3.5
-        assertEquals(3.5,product.getPrice(),0);
+        //Then: the total price should be Green Tea $2.5 + milk 2*0.5$ + sugar 1*0.5$ = 4
+        assertEquals("Green Tea Milkx2 Sugarx1",drink.getName());
+        assertEquals("Tea",drink.getType());
+        assertEquals(4,drink.getPrice(),0);
     }
 
+    @Test
+    public void testOverAmount(){
+        // Given: a product object with the Green Tea drink
+        Drink drink = new GreenTea();
+
+        //When: set the milk level to 4 and sugar level to -1
+        drink = new Milk(drink, 4);
+        drink = new Sugar(drink, -1);
+
+        //Then: the Milk should be limited to 3 and Sugar should be limited to 0, total price should be Green Tea $2.5 + milk 3*0.5$ + sugar 0*0.5$ = 4
+        assertEquals("Green Tea Milkx3 Sugarx0",drink.getName());
+        assertEquals("Tea",drink.getType());
+        assertEquals(4,drink.getPrice(),0);
+    }
 
 }
